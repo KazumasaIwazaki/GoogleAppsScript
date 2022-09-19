@@ -1,6 +1,7 @@
-// --------------------------------------------------
-// mark: 「御見積書」シートに関わる定義
-// --------------------------------------------------
+// default output folder
+var OUTPUT_FOLDER_ID = "";
+
+// mark: sample sheet definition
 var sheetRow = {
   title: 14,
   detailStart: 15,

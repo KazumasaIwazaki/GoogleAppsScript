@@ -12,7 +12,22 @@ function OutputTsvData(pOutputFolderId, pOutputFileName, pData){
     
     return FileId;
   }
+
+// Googleドライブへファイル出力
+function OutputCsvData(pOutputFolderId, pOutputFileName, pData){
+    
+  var folder = DriveApp.getFolderById(pOutputFolderId);
+  var contentType = 'text/csv';
+  var charset = 'utf-8';
+
+  var blob = Utilities.newBlob('', contentType, pOutputFileName).setDataFromString(pData, charset);
+
+  // ファイルに保存
+  var FileId = folder.createFile(blob).getId();
   
+  return FileId;
+}
+
 // PDF作成関数　引数は（folderid:保存先フォルダID, ssid:PDF化するスプレッドシートID, sheetid:PDF化するシートID, filename:PDFの名前）
 function CreatePDF(folderid, ssid, sheetid, filename){
 
@@ -165,7 +180,7 @@ function ss2xlsx(folderid, spreadsheet_id) {
   
 function ShowDownloadDialog(FileId) {
    // dialog.html をもとにHTMLファイルを生成
-  var html = HtmlService.createTemplateFromFile("dialog");
+  var html = HtmlService.createTemplateFromFile("spreadsheet/helpers/dialog");
   html.LinkUrl = FileId;
   
   // 上記HTMLファイルをダイアログ出力

@@ -18,5 +18,25 @@ function EditBySheet(pTargetName, pTargetSheet) {
     pTargetSheet.deleteColumn(1);
     SpreadsheetApp.flush();
   }
- 
+
 }
+
+// 取得データをtsv形式へ整形
+function FormatDataForTsv(pTarget) {
+
+  var FormattedString = "";
+
+  for (let row = 0; row <= pTarget.length - 1; row++) {
+    var str = "";
+    var row_length = pTarget[row].length - 1
+    for (let col = 0; col <= row_length; col++) {
+        if (col > 0) { str = str.concat('\t') }
+        str = str.concat(pTarget[row][col]);
+    }
+
+    FormattedString = FormattedString.concat(str, '\n');
+  }
+
+  return FormattedString
+}
+

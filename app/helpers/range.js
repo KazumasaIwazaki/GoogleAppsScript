@@ -14,7 +14,7 @@ function GetActiveSheetAllRange_test() {
 }
 
 // 選択中スプレッドシートの全データを取得（A1列基準）
-function GetActiveSheetDataForDeliveryPlan() {
+function GetActiveSheetBaseColA() {
     var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
     // A1セルを基準に最終行を取得
